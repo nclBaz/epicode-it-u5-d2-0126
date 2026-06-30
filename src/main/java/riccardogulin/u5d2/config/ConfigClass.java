@@ -1,10 +1,13 @@
 package riccardogulin.u5d2.config;
 
+import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import riccardogulin.u5d2.entities.BackendStudent;
 import riccardogulin.u5d2.entities.FrontendStudent;
 import riccardogulin.u5d2.entities.FullStackStudent;
+
+import java.util.Locale;
 
 @Configuration
 /*
@@ -28,6 +31,10 @@ public class ConfigClass {
 		return adminName;
 	}
 
+	@Bean
+	public String getAdminName2() {
+		return "Ajeje";
+	}
 
 	@Bean
 	public FrontendStudent getFEStudent() {
@@ -72,5 +79,13 @@ public class ConfigClass {
 //
 //		return new Interviewer(student);
 //	}
+
+	@Bean
+	// Per quanto riguarda Bean basati su classi provenienti da librerie
+	// esterne, non posso usare @Component ma devo per forza usare
+	// la classe di configurazione
+	public Faker getITFaker() {
+		return new Faker(Locale.ITALIAN);
+	}
 
 }
